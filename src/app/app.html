@@ -1,1 +1,56 @@
-{{tempData.mensaje}}
+<p-toast />
+<p-confirmdialog />
+
+<div class="layout-container">
+	<header class="layout-topbar">
+
+		<!-- Logo -->
+		<div class="topbar-left">
+			<span class="app-logo">EPIIS</span>
+		</div>
+
+		<!-- Menú principal -->
+		<nav class="topbar-menu">
+			@for(value of menuOptions; track value.route) {
+				<a [routerLink]="value.route" [ngClass]="{
+					'active-menu': value.active
+				}">
+					<i class="pi pi-{{value.icon}}"></i>
+					<span>{{value.text}}</span>
+				</a>
+			}
+		</nav>
+
+		<!-- Opciones usuario -->
+		<div class="topbar-right">
+			<p-button
+				icon="pi pi-bell"
+				[text]="true"
+				severity="contrast"
+				badge="2"
+				badgeSeverity="danger" />
+
+			<div class="user-profile" (click)="menu.toggle($event)">
+				<p-avatar
+					image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+					shape="circle" />
+
+				<span class="username">Admin</span>
+				<i class="pi pi-angle-down"></i>
+			</div>
+
+			<p-menu
+				#menu
+				[model]="profileItems"
+				[popup]="true" />
+		</div>
+	</header>
+
+	<div class="layout-body">
+		<main class="layout-main">
+			<div class="content-wrapper">
+				<router-outlet />
+			</div>
+		</main>
+	</div>
+</div>

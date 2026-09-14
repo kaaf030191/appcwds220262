@@ -1,0 +1,45 @@
+<div class="card bg-white shadow-sm rounded-lg w-full p-4">
+	<form [formGroup]="frmInsertSuggestion">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+			<div class="flex flex-col gap-2">
+				<label for="txtPersonFullName" class="font-medium">Nombre completo de quien sugiere</label>
+				<input pInputText id="txtPersonFullName" formControlName="personFullName" class="w-full"/>
+			</div>
+			<div class="flex flex-col gap-2">
+				<label for="selectOffice" class="font-medium">Oficina*</label>
+				<p-select [options]="listOffice" id="selectOffice" formControlName="office" optionLabel="name" placeholder="Seleccione una oficina" class="w-full" />
+				@if((officeFb.touched || officeFb.dirty) && officeFb.errors && officeFb.hasError('required')) {
+					<small class="errorMessage">Campo requerido.</small>
+				}
+			</div>
+		</div>
+		<div class="grid grid-cols-1 gap-4 mb-3">
+			<div class="flex flex-col gap-2">
+				<label for="txtDescription" class="font-medium">Descripción de la sugerencia*</label>
+				<textarea pTextarea id="txtDescription" formControlName="description" rows="5" class="w-full"></textarea>
+				@if((descriptionFb.touched || descriptionFb.dirty) && descriptionFb.errors && descriptionFb.hasError('required')) {
+					<small class="errorMessage">Campo requerido.</small>
+				}
+			</div>
+		</div>
+		<div class="gap-4 mb-3">
+			<p-button label="Agregar evidencia" (click)="addFile()" />&nbsp;&nbsp;<label style="color: #999999;text-shadow: 0px 0px 1px">Datos opcionales</label>
+		</div>
+		<div class="gap-4 mb-3">
+			<table class="w-full">
+				<tbody>
+				@for(value of fileRowList; track value.id) {
+					<tr>
+						<td><p-fileUpload mode="basic" chooseLabel="Seleccionar archivo" styleClass="text-xs py-1 px-3 rounded-lg" (onSelect)="onFileSelect($event, value.id)" /></td>
+						<td class="text-right"><p-button label="Retirar" severity="danger" (click)="removeFile(value)" /></td>
+					</tr>
+				}
+				</tbody>
+			</table>
+		</div>
+		<hr>
+		<div class="card flex justify-end mt-3">
+			<p-button label="Registrar datos ingresados" severity="info" (click)="sendInsertSuggestion($event)" />
+		</div>
+	</form>
+</div>

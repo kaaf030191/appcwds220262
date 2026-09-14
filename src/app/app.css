@@ -1,0 +1,173 @@
+:host {
+	display: block;
+	height: 100vh;
+}
+
+.layout-container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	overflow: hidden;
+	font-family: var(--p-font-family, sans-serif);
+}
+
+.layout-topbar {
+	height: 64px;
+	background-color: #ffffff;
+	border-bottom: 1px solid var(--p-content-border-color, #e2e8f0);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 1.5rem;
+	z-index: 999;
+	gap: 1.5rem;
+}
+
+.topbar-left, .topbar-right {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.topbar-left {
+	flex: 1;
+}
+
+.app-logo {
+	font-weight: 700;
+	font-size: 1.25rem;
+	letter-spacing: -0.05em;
+	color: #0f172a; /* Negro tipográfico */
+}
+
+.user-profile {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+	padding: 0.5rem;
+	border-radius: 8px;
+	transition: background-color 0.2s;
+}
+
+.user-profile:hover {
+	background-color: #f1f5f9;
+}
+
+.username {
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+
+.layout-body {
+	display: flex;
+	flex: 1;
+	overflow: hidden;
+	background-color: #f8fafc; /* Gris sutil de fondo */
+}
+
+.layout-main {
+	flex: 1;
+	overflow-y: auto;
+	padding: 2rem;
+}
+
+.content-wrapper {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.sidebar-content {
+	padding-top: 1rem;
+}
+
+.nav-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.nav-link {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.75rem 1rem;
+	color: #475569;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 500;
+	transition: all 0.2s;
+}
+
+.nav-link:hover {
+	background-color: #f1f5f9;
+	color: #000000;
+}
+
+.active-link {
+	background-color: #0f172a !important;
+	color: #ffffff !important;
+}
+
+.topbar-menu {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	margin-left: 2rem;
+}
+
+.topbar-menu a {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	padding: 0.6rem 1rem;
+
+	text-decoration: none;
+	color: #475569;
+
+	font-size: 0.9rem;
+	font-weight: 500;
+
+	border-radius: 8px;
+
+	transition:
+		background-color 0.2s,
+		color 0.2s;
+}
+
+.topbar-menu a:hover {
+	background-color: #f1f5f9;
+	color: #0f172a;
+}
+
+.topbar-menu a i {
+	font-size: 0.9rem;
+}
+
+.active-menu {
+	background-color: #0f172a;
+	color: #ffffff !important;
+}
+
+.active-menu i {
+	color: #ffffff;
+}
+
+.user-profile i {
+	font-size: 0.8rem;
+	color: #64748b;
+}
+
+@media (max-width: 992px) {
+	.topbar-menu {
+		display: none;
+	}
+
+	.username {
+		display: none;
+	}
+}

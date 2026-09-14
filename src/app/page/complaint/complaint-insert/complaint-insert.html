@@ -1,0 +1,91 @@
+<div class="card bg-white shadow-sm rounded-lg w-full p-4">
+	<form [formGroup]="frmInsertComplaint">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+			<div class="flex flex-col gap-2">
+				<label for="txtPersonFullName" class="font-medium">Nombre completo de quien sugiere</label>
+				<input pInputText id="txtPersonFullName" formControlName="personFullName" class="w-full"/>
+			</div>
+			<div class="flex flex-col gap-2">
+				<label for="selectOffice" class="font-medium">Oficina*</label>
+				<p-select id="selectOffice" formControlName="office" [options]="listOffice" optionLabel="name" placeholder="Seleccione una oficina" class="w-full" />
+				@if((officeFb.touched || officeFb.dirty) && officeFb.errors && officeFb.hasError('required')) {
+					<small class="errorMessage">Campo requerido.</small>
+				}
+			</div>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+			<div class="flex flex-col gap-2">
+				<label for="radioComplaintType" class="font-medium">Tipo acusado</label>
+				<div class="flex flex-wrap gap-4">
+					<div class="flex items-center">
+						<p-radiobutton inputId="radioStudent" formControlName="radioComplaintType" value="Estudiante" (change)="onChangeRadioComplaintType()" />
+						<label for="radioStudent" class="ml-2">Estudiante</label>
+					</div>
+					<div class="flex items-center">
+						<p-radiobutton inputId="radioProfessor" formControlName="radioComplaintType" value="Docente" (change)="onChangeRadioComplaintType()" />
+						<label for="radioProfessor" class="ml-2">Docente</label>
+					</div>
+				</div>
+			</div>
+			<div class="flex flex-col gap-2">
+				<label for="selectProfessor" class="font-medium">{{radioComplaintTypeFb.value}}*</label>
+				@if(radioComplaintTypeFb.value == 'Estudiante') {
+					<input pInputText id="selectProfessor" formControlName="professor" class="w-full"/>
+				} @else {
+					<p-select id="selectProfessor" formControlName="professor" [options]="listProfessor" [filter]="true" [filterFields]="['firstName', 'surName']" optionValue="idProfessor" emptyFilterMessage="No se encontraron datos" class="w-full">
+						<ng-template pTemplate="selectedItem" let-selectedOption>
+							@if(selectedOption) {
+								<div>{{ selectedOption.firstName }} {{ selectedOption.surName }}</div>
+							}
+						</ng-template>
+						<ng-template pTemplate="item" let-professor>
+							<div>{{ professor.firstName }} {{ professor.surName }}</div>
+						</ng-template>
+					</p-select>
+				}
+				@if((professorFb.touched || professorFb.dirty) && professorFb.errors && professorFb.hasError('required')) {
+					<small class="errorMessage">Campo requerido.</small>
+				}
+			</div>
+		</div>
+		<div class="grid grid-cols-1 gap-4 mb-3">
+			<div class="flex flex-col gap-2">
+				<label for="txtDescription" class="font-medium">Descripción de la queja*</label>
+				<textarea pTextarea id="txtDescription" formControlName="description" rows="5" class="w-full"></textarea>
+				@if((descriptionFb.touched || descriptionFb.dirty) && descriptionFb.errors && descriptionFb.hasError('required')) {
+					<small class="errorMessage">Campo requerido.</small>
+				}
+			</div>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+			<div class="flex flex-col gap-2 justify-center items-center">
+				<label for="txtissueDate" class="font-medium">Fecha de la incidencia*</label>
+				<p-datepicker id="txtissueDate" formControlName="issueDate" class="max-w-full" [inline]="true" [showWeek]="true" />
+				@if((issueDateFb.touched || issueDateFb.dirty) && issueDateFb.errors && issueDateFb.hasError('required')) {
+					<small class="errorMessage">Campo requerido.</small>
+				}
+			</div>
+			<div class="flex flex-col gap-2 p-4" style="background-color: #f5f5f5;border-radius: 7px;">
+				<div class="gap-4 mb-3">
+					<p-button label="Agregar evidencia" (click)="addFile()" />&nbsp;&nbsp;<label style="color: #999999;text-shadow: 0px 0px 1px">Datos opcionales</label>
+				</div>
+				<div class="gap-4 mb-3">
+					<table class="w-full">
+						<tbody>
+						@for(value of fileRowList; track value.id) {
+							<tr>
+								<td><p-fileUpload mode="basic" chooseLabel="Seleccionar archivo" styleClass="text-xs py-1 px-3 rounded-lg" (onSelect)="onFileSelect($event, value.id)" /></td>
+								<td class="text-right"><p-button label="Retirar" severity="danger" (click)="removeFile(value)" /></td>
+							</tr>
+						}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="card flex justify-end mt-3">
+			<p-button label="Registrar datos ingresados" severity="info" (click)="sendInsertComplaint($event)" />
+		</div>
+	</form>
+</div>
