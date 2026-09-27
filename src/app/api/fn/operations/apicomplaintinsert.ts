@@ -7,17 +7,10 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { ApicomplaintinsertRequest } from '../../models/apicomplaintinsert-request';
 
 export interface Apicomplaintinsert$Params {
-      body?: {
-'complaintFullName'?: string;
-'description'?: string;
-'files'?: Blob[];
-'idOffice'?: string;
-'idProfessor'?: string;
-'issueDate'?: string;
-'personFullName'?: string;
-}
+      body?: ApicomplaintinsertRequest
 }
 
 export function apicomplaintinsert(http: HttpClient, rootUrl: string, params?: Apicomplaintinsert$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {

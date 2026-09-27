@@ -39,6 +39,8 @@ export class SuggestionInsert implements OnInit {
 	fileRowList: any[] = [];
 	listFile: any[] = [];
 
+	codeGenerate: string | null = null;
+
 	get personFullNameFb() { return this.frmInsertSuggestion.controls['personFullName']; }
 	get officeFb() { return this.frmInsertSuggestion.controls['office']; }
 	get descriptionFb() { return this.frmInsertSuggestion.controls['description']; }
@@ -163,6 +165,8 @@ export class SuggestionInsert implements OnInit {
 							this.fileQuantity = 0;
 							this.fileRowList = [];
 							this.listFile = [];
+
+							this.codeGenerate = apiResponseData.code;
 
 							this.frmInsertSuggestion.reset(this.frmInsertSuggestionInitValue);
 

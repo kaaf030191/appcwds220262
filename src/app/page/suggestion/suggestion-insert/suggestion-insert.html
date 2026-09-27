@@ -42,4 +42,13 @@
 			<p-button label="Registrar datos ingresados" severity="info" (click)="sendInsertSuggestion($event)" />
 		</div>
 	</form>
+	@if(codeGenerate != null) {
+		<div style="text-align: center;">
+			<div class="sectionCodeGenerate">
+				<div>El código de seguimiento generado es</div>
+				<br>
+				<span>{{codeGenerate}}</span>
+			</div>
+		</div>
+	}
 </div>

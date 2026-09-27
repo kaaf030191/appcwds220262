@@ -7,14 +7,10 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { ApisuggestioninsertRequest } from '../../models/apisuggestioninsert-request';
 
 export interface Apisuggestioninsert$Params {
-      body?: {
-'description'?: string;
-'files'?: Blob[];
-'idOffice'?: string;
-'personFullName'?: string;
-}
+      body?: ApisuggestioninsertRequest
 }
 
 export function apisuggestioninsert(http: HttpClient, rootUrl: string, params?: Apisuggestioninsert$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {

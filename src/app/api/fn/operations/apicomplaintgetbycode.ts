@@ -8,12 +8,14 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface Apiindexindex$Params {
+export interface Apicomplaintgetbycode$Params {
+  code: string;
 }
 
-export function apiindexindex(http: HttpClient, rootUrl: string, params?: Apiindexindex$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, apiindexindex.PATH, 'get');
+export function apicomplaintgetbycode(http: HttpClient, rootUrl: string, params: Apicomplaintgetbycode$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, apicomplaintgetbycode.PATH, 'get');
   if (params) {
+    rb.path('code', params.code, {});
   }
 
   return http.request(
@@ -26,4 +28,4 @@ export function apiindexindex(http: HttpClient, rootUrl: string, params?: Apiind
   );
 }
 
-apiindexindex.PATH = '/index/index';
+apicomplaintgetbycode.PATH = '/complaint/getbycode/{code}';

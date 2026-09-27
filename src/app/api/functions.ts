@@ -13,3 +13,5 @@ export type { Apisuggestiongetbycode$Params as Apisuggestiongetbycode$Params } f
 export { apisuggestiongetbycode as apisuggestiongetbycode } from './fn/operations/apisuggestiongetbycode';
 export type { Apiprofessorgetall$Params as Apiprofessorgetall$Params } from './fn/operations/apiprofessorgetall';
 export { apiprofessorgetall as apiprofessorgetall } from './fn/operations/apiprofessorgetall';
+export type { Apicomplaintgetbycode$Params as Apicomplaintgetbycode$Params } from './fn/operations/apicomplaintgetbycode';
+export { apicomplaintgetbycode as apicomplaintgetbycode } from './fn/operations/apicomplaintgetbycode';

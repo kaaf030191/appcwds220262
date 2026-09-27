@@ -5,7 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 import { Api } from '../../../api/api';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { apisuggestiongetbycode } from '../../../api/functions';
+import { apicomplaintgetbycode, apisuggestiongetbycode } from '../../../api/functions';
 import { MessageService } from 'primeng/api';
 import { NgClass } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -69,6 +69,33 @@ export class FollowUpView implements OnInit {
 
 		if(codeValue.length == 7 && this.typeFb.value == 'suggestion') {
 			this.api.invoke(apisuggestiongetbycode, { code: codeValue }).then((response: any) => {
+				const apiResponseData = typeof response === 'string' ? JSON.parse(response) : response;
+
+				switch(apiResponseData.type) {
+					case 'success':
+						this.dataReponse = apiResponseData;
+
+						break;
+					
+					case 'warning':
+						break;
+
+					case 'error':
+						break;
+
+					case 'expcetion':
+						break;
+				}
+
+				this.changeDetectorRef.markForCheck();
+				this.changeDetectorRef.detectChanges();
+			}).catch((error: any) => {
+				this.messageService.add({ severity: 'error', summary: 'Exception', detail: 'Algo ocurrió mal.' });
+			});
+		}
+
+		if(codeValue.length == 7 && this.typeFb.value == 'complaint') {
+			this.api.invoke(apicomplaintgetbycode, { code: codeValue }).then((response: any) => {
 				const apiResponseData = typeof response === 'string' ? JSON.parse(response) : response;
 
 				switch(apiResponseData.type) {
