@@ -1,0 +1,18 @@
+.sectionCodeGenerate {
+    border: 1px dashed #999999;
+    border-radius: 7px;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.sectionCodeGenerate > div {
+    margin-bottom: 10px
+}
+
+.sectionCodeGenerate > span {
+    font-size: 22px;
+    font-weight: 700;
+}

@@ -45,6 +45,8 @@ export class ComplaintInsert implements OnInit {
 	fileRowList: any[] = [];
 	listFile: any[] = [];
 
+	codeGenerate: string | null = null;
+
 	get personFullNameFb() { return this.frmInsertComplaint.controls['personFullName']; }
 	get officeFb() { return this.frmInsertComplaint.controls['office']; }
 	get professorFb() { return this.frmInsertComplaint.controls['professor']; }
@@ -138,6 +140,10 @@ export class ComplaintInsert implements OnInit {
 		});
 	}
 
+	cleanCodeGenerate(): void {
+		this.codeGenerate = null;
+	}
+
 	sendInsertComplaint(event: Event): void {
 		if(!this.frmInsertComplaint.valid) {
 			this.frmInsertComplaint.markAllAsTouched();
@@ -191,6 +197,8 @@ export class ComplaintInsert implements OnInit {
 							this.fileQuantity = 0;
 							this.fileRowList = [];
 							this.listFile = [];
+
+							this.codeGenerate = apiResponseData.code;
 
 							this.frmInsertComplaint.reset(this.frmInsertComplaintInitValue);
 
