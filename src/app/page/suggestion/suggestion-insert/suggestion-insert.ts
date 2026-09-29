@@ -115,6 +115,10 @@ export class SuggestionInsert implements OnInit {
 		});
 	}
 
+	cleanCodeGenerate(): void {
+		this.codeGenerate = null;
+	}
+
 	sendInsertSuggestion(event: Event): void {
 		if(!this.frmInsertSuggestion.valid) {
 			this.frmInsertSuggestion.markAllAsTouched();

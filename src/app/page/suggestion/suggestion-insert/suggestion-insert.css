@@ -3,12 +3,16 @@
     border-radius: 7px;
     display: inline-block;
     font-size: 18px;
+    margin-bottom: 10px;
     padding: 10px;
     text-align: center;
-    width: 250px;
+}
+
+.sectionCodeGenerate > div {
+    margin-bottom: 10px
 }
 
 .sectionCodeGenerate > span {
-    font-size: 20px;
-    font-weight: 900;
+    font-size: 22px;
+    font-weight: 700;
 }
