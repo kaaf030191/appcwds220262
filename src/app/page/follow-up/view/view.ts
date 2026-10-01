@@ -9,6 +9,7 @@ import { apicomplaintgetbycode, apisuggestiongetbycode } from '../../../api/func
 import { MessageService } from 'primeng/api';
 import { NgClass } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { ComplaintComment } from '../complaint-comment/complaint-comment';
 
 @Component({
 	selector: 'app-follow-up-view',
@@ -19,7 +20,8 @@ import { ButtonModule } from 'primeng/button';
 		InputMaskModule,
 		RadioButtonModule,
 		ButtonModule,
-		NgClass
+		NgClass,
+		ComplaintComment
 ],
 	templateUrl: './view.html',
 	styleUrl: './view.css',
@@ -38,6 +40,7 @@ export class FollowUpView implements OnInit {
 
 	get codeFb() { return this.frmFollowUp.controls['code']; }
 	get typeFb() { return this.frmFollowUp.controls['type']; }
+	get codeValue() { return this.codeFb.value.replaceAll('_', ''); }
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -65,7 +68,7 @@ export class FollowUpView implements OnInit {
 	getDataSuggestionComplaint(): void {
 		this.dataReponse = null;
 
-		let codeValue = this.codeFb.value.replaceAll('_', '');
+		let codeValue = this.codeValue;
 
 		if(codeValue.length == 7 && this.typeFb.value == 'suggestion') {
 			this.api.invoke(apisuggestiongetbycode, { code: codeValue }).then((response: any) => {
@@ -76,7 +79,7 @@ export class FollowUpView implements OnInit {
 						this.dataReponse = apiResponseData;
 
 						break;
-					
+
 					case 'warning':
 						break;
 
@@ -103,7 +106,7 @@ export class FollowUpView implements OnInit {
 						this.dataReponse = apiResponseData;
 
 						break;
-					
+
 					case 'warning':
 						break;
 
@@ -123,6 +126,10 @@ export class FollowUpView implements OnInit {
 	}
 
 	showTimeLine(): boolean {
-		return this.dataReponse != null && this.dataReponse.status != null && this.codeFb.value.replaceAll('_', '').length == 7
+		return this.dataReponse != null && this.dataReponse.status != null && this.codeValue.length == 7
+	}
+
+	showComplaintComment(): boolean {
+		return this.typeFb.value == 'complaint' && this.showTimeLine();
 	}
 }

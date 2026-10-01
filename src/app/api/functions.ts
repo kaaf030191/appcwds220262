@@ -15,3 +15,7 @@ export type { Apiprofessorgetall$Params as Apiprofessorgetall$Params } from './f
 export { apiprofessorgetall as apiprofessorgetall } from './fn/operations/apiprofessorgetall';
 export type { Apicomplaintgetbycode$Params as Apicomplaintgetbycode$Params } from './fn/operations/apicomplaintgetbycode';
 export { apicomplaintgetbycode as apicomplaintgetbycode } from './fn/operations/apicomplaintgetbycode';
+export type { Apicomplaintcommentgetbycode$Params as Apicomplaintcommentgetbycode$Params } from './fn/operations/apicomplaintcommentgetbycode';
+export { apicomplaintcommentgetbycode as apicomplaintcommentgetbycode } from './fn/operations/apicomplaintcommentgetbycode';
+export type { Apicomplaintcommentinsert$Params as Apicomplaintcommentinsert$Params } from './fn/operations/apicomplaintcommentinsert';
+export { apicomplaintcommentinsert as apicomplaintcommentinsert } from './fn/operations/apicomplaintcommentinsert';

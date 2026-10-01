@@ -3,3 +3,4 @@
 
 export type { ApicomplaintinsertRequest } from './models/apicomplaintinsert-request';
 export type { ApisuggestioninsertRequest } from './models/apisuggestioninsert-request';
+export type { ApicomplaintcommentinsertRequest } from './models/apicomplaintcommentinsert-request';

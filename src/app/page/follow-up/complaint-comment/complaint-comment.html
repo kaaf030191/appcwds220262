@@ -1,0 +1,52 @@
+<div class="custom-comments">
+	<div class="custom-comments-header">
+		<h4 class="custom-comments-title">Comentarios</h4>
+		<span class="custom-comments-count">{{ listComplaintComment.length }}</span>
+		<p-button icon="pi pi-refresh" severity="secondary" [text]="true" size="small" [loading]="loadingComplaintComment" pTooltip="Actualizar" (click)="getDataComplaintComment()" />
+	</div>
+	@if(loadingComplaintComment && listComplaintComment.length == 0) {
+		<div class="custom-comments-loading">
+			<p-progressspinner styleClass="custom-comments-spinner" strokeWidth="4" />
+			<span>Cargando comentarios...</span>
+		</div>
+	} @else {
+		@if(listComplaintComment.length == 0) {
+			<div class="custom-comments-empty">
+				<i class="pi pi-comments"></i>
+				@for(message of listMessageComplaintComment; track message) {
+					<span>{{ message }}</span>
+				} @empty {
+					<span>Aún no hay comentarios en esta queja.</span>
+				}
+			</div>
+		} @else {
+			<div class="custom-comments-list">
+				@for(item of listComplaintComment; track item.idComplaintcomment) {
+					<div class="custom-comment">
+						<div class="custom-comment-avatar"><i class="pi pi-user"></i></div>
+						<div class="custom-comment-body">
+							<div class="custom-comment-meta">
+								<span class="custom-comment-author">{{ item.personFullName == '' ? 'Anónimo' : item.personFullName }}</span>
+								<span class="custom-comment-date">{{ item.createdAt }}</span>
+							</div>
+							<p class="custom-comment-description">{{ item.description }}</p>
+						</div>
+					</div>
+				}
+			</div>
+		}
+	}
+	<form [formGroup]="frmComplaintComment">
+		<textarea pTextarea formControlName="description" rows="3" maxlength="2000" class="custom-comments-input" placeholder="Escriba su comentario aquí..." (keydown.enter)="onKeyDownComplaintComment($event)"></textarea>
+		<div class="custom-comments-actions">
+			<small class="custom-comments-counter">{{ descriptionComplaintCommentFb.value.length }}/2000</small>
+			<p-button label="Enviar" icon="pi pi-send" severity="info" size="small" [loading]="sendingComplaintComment" (click)="sendInsertComplaintComment()" />
+		</div>
+		@if((descriptionComplaintCommentFb.touched || descriptionComplaintCommentFb.dirty) && descriptionComplaintCommentFb.errors && descriptionComplaintCommentFb.hasError('required')) {
+			<small class="errorMessage">Campo requerido.</small>
+		}
+		@if((descriptionComplaintCommentFb.touched || descriptionComplaintCommentFb.dirty) && descriptionComplaintCommentFb.errors && descriptionComplaintCommentFb.hasError('maxlength')) {
+			<small class="errorMessage">Admite hasta 2000 caracteres.</small>
+		}
+	</form>
+</div>
