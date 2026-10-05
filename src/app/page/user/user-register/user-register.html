@@ -1,0 +1,88 @@
+<app-auth-shell
+	eyebrow="EPIIS"
+	title="Crear cuenta de estudiante"
+	subtitle="El registro es exclusivo para estudiantes de la comunidad universitaria.">
+
+	<form [formGroup]="frmRegister" class="auth-card">
+
+		<div class="field-row">
+			<div class="field">
+				<label for="txtRegisterFirstName" class="field-label">Nombres</label>
+				<input
+					pInputText
+					id="txtRegisterFirstName"
+					formControlName="firstName"
+					placeholder="Juan Carlos"
+					autocomplete="given-name"
+					class="field-input" />
+				@if(showError(firstNameFb, 'required')) {
+					<small class="field-error">Los nombres son obligatorios.</small>
+				}
+			</div>
+
+			<div class="field">
+				<label for="txtRegisterSurName" class="field-label">Apellidos</label>
+				<input
+					pInputText
+					id="txtRegisterSurName"
+					formControlName="surName"
+					placeholder="Pérez Ramírez"
+					autocomplete="family-name"
+					class="field-input" />
+				@if(showError(surNameFb, 'required')) {
+					<small class="field-error">Los apellidos son obligatorios.</small>
+				}
+			</div>
+		</div>
+
+		<div class="field">
+			<label for="txtRegisterEmail" class="field-label">Correo electrónico</label>
+			<p-iconfield class="field-icon">
+				<p-inputicon class="pi pi-envelope" />
+				<input
+					pInputText
+					id="txtRegisterEmail"
+					type="email"
+					formControlName="email"
+					placeholder="usuario@correo.com"
+					autocomplete="email"
+					class="field-input" />
+			</p-iconfield>
+			@if(showError(emailFb, 'required')) {
+				<small class="field-error">El correo electrónico es obligatorio.</small>
+			} @else if(showError(emailFb, 'email')) {
+				<small class="field-error">El formato del correo no es válido.</small>
+			}
+		</div>
+
+		<div class="field">
+			<label for="txtRegisterPassword" class="field-label">Contraseña</label>
+			<p-password
+				inputId="txtRegisterPassword"
+				formControlName="password"
+				placeholder="Mínimo 6 caracteres"
+				[feedback]="false"
+				[toggleMask]="true"
+				styleClass="field-input"
+				inputStyleClass="field-control"
+				autocomplete="new-password" />
+			@if(showError(passwordFb, 'required')) {
+				<small class="field-error">La contraseña es obligatoria.</small>
+			} @else if(showError(passwordFb, 'minlength')) {
+				<small class="field-error">La contraseña debe tener al menos 6 caracteres.</small>
+			}
+		</div>
+
+		<p-button
+			label="Crear cuenta"
+			icon="pi pi-user-plus"
+			styleClass="auth-submit"
+			[loading]="sending"
+			(onClick)="sendRegister()" />
+
+		<div class="auth-actions">
+			<span class="auth-hint">¿Ya tienes una cuenta?</span>
+			<a routerLink="/user/login" class="auth-link">Ingresa aquí</a>
+		</div>
+	</form>
+</app-auth-shell>

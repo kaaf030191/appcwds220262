@@ -1,0 +1,57 @@
+<app-auth-shell
+	eyebrow="EPIIS"
+	title="Iniciar sesión"
+	subtitle="Ingresa tus credenciales para acceder al sistema.">
+
+	<form [formGroup]="frmLogin" class="auth-card">
+
+		<div class="field">
+			<label for="txtLoginEmail" class="field-label">Correo electrónico</label>
+			<p-iconfield class="field-icon">
+				<p-inputicon class="pi pi-envelope" />
+				<input
+					pInputText
+					id="txtLoginEmail"
+					type="email"
+					formControlName="email"
+					placeholder="usuario@correo.com"
+					autocomplete="username"
+					class="field-input" />
+			</p-iconfield>
+			@if(showError(emailFb, 'required')) {
+				<small class="field-error">El correo electrónico es obligatorio.</small>
+			} @else if(showError(emailFb, 'email')) {
+				<small class="field-error">El formato del correo no es válido.</small>
+			}
+		</div>
+
+		<div class="field">
+			<label for="txtLoginPassword" class="field-label">Contraseña</label>
+			<p-password
+				inputId="txtLoginPassword"
+				formControlName="password"
+				placeholder="Ingresa tu contraseña"
+				[feedback]="false"
+				[toggleMask]="true"
+				styleClass="field-input"
+				inputStyleClass="field-control"
+				autocomplete="current-password" />
+			@if(showError(passwordFb, 'required')) {
+				<small class="field-error">La contraseña es obligatoria.</small>
+			}
+		</div>
+
+		<p-button
+			label="Ingresar"
+			icon="pi pi-arrow-right"
+			iconPos="right"
+			styleClass="auth-submit"
+			[loading]="sending"
+			(onClick)="sendLogin()" />
+
+		<div class="auth-actions">
+			<span class="auth-hint">¿Todavía no tienes cuenta?</span>
+			<a routerLink="/user/register" class="auth-link">Regístrate aquí</a>
+		</div>
+	</form>
+</app-auth-shell>

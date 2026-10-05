@@ -19,3 +19,16 @@ export type { Apicomplaintcommentgetbycode$Params as Apicomplaintcommentgetbycod
 export { apicomplaintcommentgetbycode as apicomplaintcommentgetbycode } from './fn/operations/apicomplaintcommentgetbycode';
 export type { Apicomplaintcommentinsert$Params as Apicomplaintcommentinsert$Params } from './fn/operations/apicomplaintcommentinsert';
 export { apicomplaintcommentinsert as apicomplaintcommentinsert } from './fn/operations/apicomplaintcommentinsert';
+export type { ApiuserloginRequestParams as Apiuserlogin$Params } from './fn/operations/apiuserlogin';
+export { apiuserlogin as apiuserlogin } from './fn/operations/apiuserlogin';
+export type { ApiuserregisterRequestParams as Apiuserregister$Params } from './fn/operations/apiuserregister';
+export { apiuserregister as apiuserregister } from './fn/operations/apiuserregister';
+export { apiuserauthenticated as apiuserauthenticated } from './fn/operations/apiuserauthenticated';
+export type { ApiadmincomplaintgetallRequestParams as Apiadmincomplaintgetall$Params } from './fn/operations/apiadmincomplaintgetall';
+export { apiadmincomplaintgetall as apiadmincomplaintgetall } from './fn/operations/apiadmincomplaintgetall';
+export type { ApiadminsuggestiongetallRequestParams as Apiadminsuggestiongetall$Params } from './fn/operations/apiadminsuggestiongetall';
+export { apiadminsuggestiongetall as apiadminsuggestiongetall } from './fn/operations/apiadminsuggestiongetall';
+export type { ApiadmincomplaintupdatestatusRequestParams as Apiadmincomplaintupdatestatus$Params } from './fn/operations/apiadmincomplaintupdatestatus';
+export { apiadmincomplaintupdatestatus as apiadmincomplaintupdatestatus } from './fn/operations/apiadmincomplaintupdatestatus';
+export type { ApiadminsuggestionupdatestatusRequestParams as Apiadminsuggestionupdatestatus$Params } from './fn/operations/apiadminsuggestionupdatestatus';
+export { apiadminsuggestionupdatestatus as apiadminsuggestionupdatestatus } from './fn/operations/apiadminsuggestionupdatestatus';

@@ -1,0 +1,19 @@
+<div class="admin-shell" [class.admin-shell-nav-open]="mobileNavVisible()">
+
+	<aside class="admin-aside">
+		<app-admin-sidebar (navigate)="closeMobileNav()" />
+	</aside>
+
+	<div class="admin-main-column">
+
+		<app-admin-topbar
+			(toggleNav)="toggleNav()"
+			(logoutRequest)="logout()" />
+
+		<main class="admin-content">
+			<div class="admin-content-inner">
+				<router-outlet />
+			</div>
+		</main>
+	</div>
+</div>

@@ -1,0 +1,136 @@
+:host {
+	display: block;
+}
+
+.admin-topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	height: 64px;
+	padding: 0 1.25rem;
+	background-color: #ffffff;
+	border-bottom: 1px solid #e2e8f0;
+	flex-shrink: 0;
+}
+
+.topbar-left {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	min-width: 0;
+}
+
+/* ---------- Breadcrumb ---------- */
+.breadcrumb {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: 0.82rem;
+	color: #64748b;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.crumb {
+	color: #64748b;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.crumb-link:hover {
+	color: #0f172a;
+}
+
+.crumb-active {
+	color: #0f172a;
+	font-weight: 600;
+}
+
+.crumb-sep {
+	font-size: 0.65rem;
+	color: #cbd5e1;
+}
+
+/* ---------- Lado derecho ---------- */
+.topbar-right {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	flex-shrink: 0;
+}
+
+.topbar-separator {
+	width: 1px;
+	height: 26px;
+	background-color: #e2e8f0;
+	margin: 0 0.5rem;
+}
+
+.user-trigger {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	padding: 0.35rem 0.5rem;
+	border: none;
+	background: transparent;
+	border-radius: 8px;
+	cursor: pointer;
+	font: inherit;
+	color: inherit;
+	transition: background-color 0.15s ease;
+}
+
+.user-trigger:hover {
+	background-color: #f1f5f9;
+}
+
+.trigger-meta {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	line-height: 1.2;
+}
+
+.trigger-name {
+	font-size: 0.82rem;
+	font-weight: 600;
+	color: #0f172a;
+}
+
+.trigger-role {
+	font-size: 0.7rem;
+	color: #64748b;
+}
+
+.trigger-caret {
+	font-size: 0.7rem;
+	color: #94a3b8;
+}
+
+/* El aside ya está siempre visible en escritorio, así que la hamburguesa sobra.
+   La clase va en el host de p-button: el <button> interno lo genera PrimeNG y no
+   lleva el atributo de scope de este componente. */
+@media (min-width: 992px) {
+	.nav-toggle {
+		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+	.admin-topbar {
+		padding: 0 0.75rem;
+	}
+
+	.breadcrumb {
+		display: none;
+	}
+
+	.trigger-meta {
+		display: none;
+	}
+
+	.topbar-separator {
+		margin: 0 0.25rem;
+	}
+}

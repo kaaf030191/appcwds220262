@@ -1,0 +1,249 @@
+:host {
+	display: block;
+}
+
+.list-page {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+/* ---------- Encabezado ---------- */
+.page-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.page-title {
+	margin: 0;
+	font-size: 1.4rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	color: #0f172a;
+}
+
+.page-sub {
+	margin: 0.35rem 0 0;
+	font-size: 0.875rem;
+	color: #64748b;
+	max-width: 70ch;
+}
+
+/* ---------- Card ---------- */
+.card {
+	background-color: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	flex-wrap: wrap;
+	padding: 0.9rem 1.1rem;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.toolbar-left {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.toolbar-right {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.result-count {
+	font-size: 0.78rem;
+	color: #64748b;
+	white-space: nowrap;
+}
+
+/* ---------- Celdas ---------- */
+.code-chip {
+	display: inline-block;
+	padding: 0.15rem 0.45rem;
+	border-radius: 6px;
+	background-color: #f1f5f9;
+	border: 1px solid #e2e8f0;
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: #0f172a;
+	white-space: nowrap;
+}
+
+.cell-sub {
+	margin-top: 0.25rem;
+	font-size: 0.75rem;
+	color: #64748b;
+}
+
+.cell-sub i {
+	font-size: 0.7rem;
+}
+
+.cell-person {
+	font-size: 0.82rem;
+	color: #334155;
+}
+
+.cell-anonymous {
+	color: #94a3b8;
+	font-style: italic;
+}
+
+.cell-muted {
+	font-size: 0.8rem;
+	color: #64748b;
+}
+
+/* ---------- Estado: timeline inline ---------- */
+.status-track {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 11rem;
+	padding: 0.25rem 0;
+}
+
+.status-track-rail {
+	position: absolute;
+	top: 50%;
+	left: 7px;
+	right: 7px;
+	height: 2px;
+	transform: translateY(-50%);
+	background-color: #e2e8f0;
+	border-radius: 2px;
+}
+
+.status-step {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3px;
+	border: none;
+	border-radius: 50%;
+	background: transparent;
+	cursor: pointer;
+	line-height: 0;
+	transition: transform 0.12s ease;
+}
+
+.status-step:not(:disabled):hover {
+	transform: scale(1.25);
+}
+
+.status-step:focus-visible {
+	outline: 2px solid #2563eb;
+	outline-offset: 1px;
+}
+
+.status-step:disabled {
+	cursor: default;
+}
+
+.status-track-busy .status-step {
+	cursor: progress;
+	opacity: 0.6;
+}
+
+.status-dot {
+	display: block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #ffffff;
+	border: 2px solid #cbd5e1;
+	transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.status-step-done .status-dot {
+	background-color: var(--tone-soft);
+	border-color: var(--tone);
+}
+
+.status-step-current .status-dot {
+	width: 14px;
+	height: 14px;
+	background-color: var(--tone);
+	border-color: var(--tone);
+	box-shadow: 0 0 0 3px var(--tone-soft);
+}
+
+.status-current {
+	margin: 0.3rem 0 0;
+	font-size: 0.72rem;
+	font-weight: 600;
+	color: var(--tone-text);
+}
+
+/* Un tono por estado: las variables las heredan los puntos y la etiqueta. */
+.tone-status-pending {
+	--tone: #f59e0b;
+	--tone-soft: #fef3c7;
+	--tone-text: #b45309;
+}
+
+.tone-status-seen {
+	--tone: #3b82f6;
+	--tone-soft: #dbeafe;
+	--tone-text: #1d4ed8;
+}
+
+.tone-status-coordination {
+	--tone: #8b5cf6;
+	--tone-soft: #ede9fe;
+	--tone-text: #6d28d9;
+}
+
+.tone-status-refused {
+	--tone: #ef4444;
+	--tone-soft: #fee2e2;
+	--tone-text: #b91c1c;
+}
+
+.tone-status-close {
+	--tone: #22c55e;
+	--tone-soft: #dcfce7;
+	--tone-text: #15803d;
+}
+
+.tone-status-unknown {
+	--tone: #94a3b8;
+	--tone-soft: #f1f5f9;
+	--tone-text: #64748b;
+}
+
+/* ---------- Estado vacío ---------- */
+.empty-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.6rem;
+	padding: 2.5rem 1rem;
+	color: #94a3b8;
+	text-align: center;
+}
+
+.empty-state i {
+	font-size: 1.75rem;
+}
+
+.empty-state p {
+	margin: 0;
+	font-size: 0.875rem;
+}

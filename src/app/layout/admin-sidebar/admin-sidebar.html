@@ -1,0 +1,43 @@
+<div class="aside-inner">
+
+	<div class="aside-brand">
+		<span class="brand-mark">E</span>
+		<span class="brand-text">
+			<span class="brand-name">EPIIS</span>
+			<span class="brand-sub">Panel administrativo</span>
+		</span>
+
+		<button type="button" class="nav-close" ariaLabel="Cerrar menú" (click)="navigate.emit()">
+			<i class="pi pi-times"></i>
+		</button>
+	</div>
+
+	<nav class="aside-nav">
+		@for(group of groups; track group.header) {
+			<div class="nav-group">
+				<span class="nav-header">{{group.header}}</span>
+
+				@for(item of group.items; track item.route) {
+					<a
+						class="nav-item"
+						[class.nav-item-active]="isActive(item)"
+						[routerLink]="item.route"
+						(click)="onItemClick()">
+						<i [class]="item.icon"></i>
+						<span>{{item.label}}</span>
+					</a>
+				}
+			</div>
+		}
+	</nav>
+
+	@if(user(); as sessionUser) {
+		<div class="aside-user">
+			<p-avatar [label]="initials()" shape="circle" styleClass="user-avatar" />
+			<div class="user-meta">
+				<span class="user-name">{{sessionUser.firstName}} {{sessionUser.surName}}</span>
+				<span class="user-role">{{sessionUser.role}}</span>
+			</div>
+		</div>
+	}
+</div>

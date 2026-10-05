@@ -1,0 +1,169 @@
+<div class="list-page">
+
+	<div class="page-head">
+		<div>
+			<h1 class="page-title">{{title}}</h1>
+			<p class="page-sub">{{subtitle}}</p>
+		</div>
+
+		<p-button
+			label="Actualizar"
+			icon="pi pi-refresh"
+			severity="secondary"
+			[outlined]="true"
+			size="small"
+			[loading]="loading()"
+			(onClick)="getData()" />
+	</div>
+
+	<section class="card">
+
+		<div class="toolbar">
+			<div class="toolbar-left">
+				<p-select
+					[options]="statusOptions"
+					optionLabel="label"
+					optionValue="value"
+					[(ngModel)]="filterStatus"
+					placeholder="Todos los estados"
+					[showClear]="true"
+					appendTo="body"
+					styleClass="status-filter" />
+
+				<p-button
+					label="Filtrar"
+					icon="pi pi-filter"
+					severity="contrast"
+					size="small"
+					(onClick)="getData()" />
+
+				<p-button
+					label="Limpiar"
+					icon="pi pi-times"
+					severity="secondary"
+					[text]="true"
+					size="small"
+					[disabled]="!hasFilter"
+					(onClick)="clearFilter()" />
+			</div>
+
+			<div class="toolbar-right">
+				<span class="result-count">
+					{{loading() ? 'Cargando…' : rows().length + (rows().length === 1 ? ' registro' : ' registros')}}
+				</span>
+			</div>
+		</div>
+
+		<p-table
+			[value]="rows()"
+			[loading]="loading()"
+			[rowHover]="true"
+			[scrollable]="true"
+			scrollHeight="flex"
+			[tableStyle]="{ 'min-width': '54rem' }"
+			styleClass="admin-table">
+
+			<ng-template #header>
+				<tr>
+					<th style="width: 8rem">Código</th>
+					<th style="width: 12rem">Solicitante</th>
+					<th style="width: 11rem">Oficina</th>
+					<th style="width: 9.5rem">Fecha</th>
+					<th style="width: 17rem">Estado</th>
+					<th style="width: 9rem">Detalle</th>
+				</tr>
+			</ng-template>
+
+			<ng-template #body let-row>
+				<tr>
+					<td>
+						<span class="code-chip">{{row.code}}</span>
+						<div class="cell-sub">
+							@if(section() === 'complaint') {
+								<span><i class="pi pi-comments"></i> {{row.totalComments}}</span>
+							} @else {
+								<span><i class="pi pi-paperclip"></i> {{row.totalFiles ?? 0}}</span>
+							}
+						</div>
+					</td>
+
+					<td>
+						<span class="cell-person" [class.cell-anonymous]="!row.personFullName?.trim()">
+							{{personLabel(row)}}
+						</span>
+					</td>
+
+					<td>
+						<span class="cell-muted">{{officeLabel(row)}}</span>
+					</td>
+
+					<td>
+						<span class="cell-muted">{{formatDate(row.createdAt)}}</span>
+					</td>
+
+					<td>
+						<div class="status-track" [ngClass]="'tone-' + toneClassOf(row.status)" [class.status-track-busy]="isBusy(row)">
+							<div class="status-track-rail"></div>
+
+							@for(step of statusSteps; track step.value; let i = $index) {
+								<button
+									type="button"
+									class="status-step"
+									[class.status-step-done]="stepIndex(row.status) > i"
+									[class.status-step-current]="stepIndex(row.status) === i"
+									[disabled]="step.value === row.status || isBusy(row)"
+									[attr.aria-label]="'Cambiar estado a ' + step.label"
+									[attr.aria-current]="step.value === row.status"
+									[pTooltip]="step.label + (step.value === row.status ? ' (actual)' : '')"
+									tooltipPosition="top"
+									(click)="onUpdateStatus(row, step.value)">
+									<span class="status-dot"></span>
+								</button>
+							}
+						</div>
+
+						<p class="status-current" [ngClass]="'tone-' + toneClassOf(row.status)">{{row.status}}</p>
+					</td>
+
+					<td>
+						<p-button
+							label="Ver detalles"
+							icon="pi pi-search-plus"
+							severity="contrast"
+							[outlined]="true"
+							size="small"
+							(onClick)="openDetails(row)" />
+					</td>
+				</tr>
+			</ng-template>
+
+			<ng-template #emptymessage>
+				<tr>
+					<td colspan="6">
+						<div class="empty-state">
+							<i class="pi pi-inbox"></i>
+							<p>{{emptyLabel}}</p>
+							@if(hasFilter) {
+								<p-button
+									label="Quitar filtro"
+									severity="secondary"
+									[text]="true"
+									size="small"
+									(onClick)="clearFilter()" />
+							}
+						</div>
+					</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</section>
+</div>
+
+<!-- ================= Modal de detalle ================= -->
+<app-admin-detail-dialog
+	[visible]="detailsVisible()"
+	(visibleChange)="detailsVisible.set($event)"
+	[section]="section()"
+	[row]="detailsRow()"
+	[comments]="comments()"
+	[commentsLoading]="commentsLoading()" />

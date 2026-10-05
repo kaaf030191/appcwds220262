@@ -1,0 +1,88 @@
+<section class="dashboard">
+	<header class="dash-header">
+		<div>
+			<h1>Panel de control</h1>
+			<p>Resumen de quejas y sugerencias registradas por la comunidad educativa.</p>
+		</div>
+
+		@if(!loading()) {
+			<p-button label="Actualizar" icon="pi pi-refresh" severity="secondary" [outlined]="true" (onClick)="getData()" />
+		}
+	</header>
+
+	<div class="dash-grid">
+		<article class="dash-card">
+			<header class="dash-card-header">
+				<div class="dash-card-title">
+					<span class="dash-card-icon dash-card-icon-complaint"><i class="pi pi-comment"></i></span>
+					<div>
+						<h2>Quejas</h2>
+						<p>{{ totalOf(complaintTotals()) }} registradas en total</p>
+					</div>
+				</div>
+
+				<a pButton routerLink="/admin/quejas" label="Ver todas" icon="pi pi-arrow-right" iconPos="right" class="dash-card-action"></a>
+			</header>
+
+			@if(loading()) {
+				<div class="dash-tiles">
+					@for(tile of tiles; track tile.key) {
+						<div class="dash-tile">
+							<p-skeleton width="60%" height="0.9rem" />
+							<p-skeleton width="40%" height="1.6rem" />
+						</div>
+					}
+				</div>
+			} @else {
+				<div class="dash-tiles">
+					@for(tile of tiles; track tile.key; let i = $index) {
+						<a class="dash-tile" [class]="'dash-tile ' + toneFor(i)" routerLink="/admin/quejas">
+							<span class="dash-tile-icon"><i [class]="iconFor(i)"></i></span>
+							<span class="dash-tile-body">
+								<span class="dash-tile-label">{{ tile.label }}</span>
+								<strong class="dash-tile-value">{{ valueOf(complaintTotals(), tile.key) }}</strong>
+							</span>
+						</a>
+					}
+				</div>
+			}
+		</article>
+
+		<article class="dash-card">
+			<header class="dash-card-header">
+				<div class="dash-card-title">
+					<span class="dash-card-icon dash-card-icon-suggestion"><i class="pi pi-lightbulb"></i></span>
+					<div>
+						<h2>Sugerencias</h2>
+						<p>{{ totalOf(suggestionTotals()) }} registradas en total</p>
+					</div>
+				</div>
+
+				<a pButton routerLink="/admin/sugerencias" label="Ver todas" icon="pi pi-arrow-right" iconPos="right" class="dash-card-action"></a>
+			</header>
+
+			@if(loading()) {
+				<div class="dash-tiles">
+					@for(tile of tiles; track tile.key) {
+						<div class="dash-tile">
+							<p-skeleton width="60%" height="0.9rem" />
+							<p-skeleton width="40%" height="1.6rem" />
+						</div>
+					}
+				</div>
+			} @else {
+				<div class="dash-tiles">
+					@for(tile of tiles; track tile.key; let i = $index) {
+						<a class="dash-tile" [class]="'dash-tile ' + toneFor(i)" routerLink="/admin/sugerencias">
+							<span class="dash-tile-icon"><i [class]="iconFor(i)"></i></span>
+							<span class="dash-tile-body">
+								<span class="dash-tile-label">{{ tile.label }}</span>
+								<strong class="dash-tile-value">{{ valueOf(suggestionTotals(), tile.key) }}</strong>
+							</span>
+						</a>
+					}
+				</div>
+			}
+		</article>
+	</div>
+</section>

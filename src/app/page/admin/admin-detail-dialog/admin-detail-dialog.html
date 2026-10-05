@@ -1,0 +1,93 @@
+<p-dialog
+	[visible]="visible()"
+	(visibleChange)="visibleChange.emit($event)"
+	[header]="title"
+	[modal]="true"
+	[draggable]="false"
+	[resizable]="false"
+	[style]="{ width: '38rem', maxWidth: '100vw' }"
+	[breakpoints]="{ '640px': '100vw' }"
+	styleClass="detail-dialog">
+
+	@if(row(); as item) {
+		<div class="detail">
+			<div class="detail-head">
+				<span class="code-chip">{{item.code}}</span>
+				<p-tag [value]="item.status" [severity]="severityOf(item.status)" />
+			</div>
+
+			<dl class="detail-grid">
+				<div class="detail-cell">
+					<dt>Tipo</dt>
+					<dd>{{isComplaint ? 'Queja' : 'Sugerencia'}}</dd>
+				</div>
+				<div class="detail-cell">
+					<dt>Solicitante</dt>
+					<dd>{{personLabel(item)}}</dd>
+				</div>
+				<div class="detail-cell">
+					<dt>Oficina</dt>
+					<dd>{{officeLabel(item)}}</dd>
+				</div>
+				<div class="detail-cell">
+					<dt>Registrado</dt>
+					<dd>{{formatDate(item.createdAt)}}</dd>
+				</div>
+				@if(isComplaint) {
+					<div class="detail-cell">
+						<dt>Fecha del hecho</dt>
+						<dd>{{formatDate(item.issueDate)}}</dd>
+					</div>
+				}
+				<div class="detail-cell">
+					<dt>Actualizado</dt>
+					<dd>{{formatDate(item.updatedAt)}}</dd>
+				</div>
+			</dl>
+
+			<div class="detail-block">
+				<h3>Descripción</h3>
+				<p class="detail-description">{{item.description || 'Sin descripción.'}}</p>
+			</div>
+
+			@if(isComplaint) {
+				<div class="detail-block">
+					<h3>Comentarios ({{comments().length}})</h3>
+
+					@if(commentsLoading()) {
+						<div class="comments-loading">
+							@for(placeholder of [1, 2, 3]; track placeholder) {
+								<p-skeleton width="100%" height="4rem" borderRadius="10px" />
+							}
+						</div>
+					} @else if(comments().length === 0) {
+						<p class="detail-muted">Esta queja aún no tiene comentarios.</p>
+					} @else {
+						<ul class="comment-list">
+							@for(comment of comments(); track trackByComment($index, comment)) {
+								<li class="comment">
+									<div class="comment-top">
+										<span class="comment-author">{{comment.personFullName || 'Anónimo'}}</span>
+										<span class="comment-date">{{formatDate(comment.createdAt)}}</span>
+									</div>
+									<p class="comment-body">{{comment.description}}</p>
+								</li>
+							}
+						</ul>
+					}
+				</div>
+			} @else {
+				<div class="detail-block">
+					<h3>Archivos adjuntos</h3>
+					<p class="detail-muted">
+						@if(item.totalFiles > 0) {
+							{{item.totalFiles}} archivo(s) adjunto(s).
+						} @else {
+							Esta sugerencia no tiene archivos adjuntos.
+						}
+					</p>
+				</div>
+			}
+		</div>
+	}
+</p-dialog>

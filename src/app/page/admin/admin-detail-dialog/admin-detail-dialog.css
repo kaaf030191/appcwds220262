@@ -1,0 +1,136 @@
+:host {
+	display: block;
+}
+
+.code-chip {
+	display: inline-block;
+	padding: 0.15rem 0.45rem;
+	border-radius: 6px;
+	background-color: #f1f5f9;
+	border: 1px solid #e2e8f0;
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: #0f172a;
+	white-space: nowrap;
+}
+
+.detail {
+	display: flex;
+	flex-direction: column;
+	gap: 1.1rem;
+}
+
+.detail-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+}
+
+.detail-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+	gap: 0.85rem;
+	margin: 0;
+	padding: 0.9rem;
+	background-color: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 10px;
+}
+
+.detail-cell dt {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	color: #64748b;
+	font-weight: 600;
+}
+
+.detail-cell dd {
+	margin: 0.2rem 0 0;
+	font-size: 0.85rem;
+	color: #0f172a;
+	word-break: break-word;
+}
+
+.detail-block h3 {
+	margin: 0 0 0.5rem;
+	font-size: 0.78rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #64748b;
+	font-weight: 700;
+}
+
+.detail-description {
+	margin: 0;
+	padding: 0.85rem 1rem;
+	background-color: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-left: 3px solid #2563eb;
+	border-radius: 10px;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	color: #0f172a;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.detail-muted {
+	margin: 0;
+	font-size: 0.85rem;
+	color: #64748b;
+}
+
+.comments-loading {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.comment-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.comment {
+	padding: 0.85rem 1rem;
+	border: 1px solid #e2e8f0;
+	border-radius: 10px;
+	background-color: #f8fafc;
+}
+
+.comment-top {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.75rem;
+	margin-bottom: 0.35rem;
+}
+
+.comment-author {
+	font-size: 0.82rem;
+	font-weight: 650;
+	color: #0f172a;
+}
+
+.comment-date {
+	font-size: 0.72rem;
+	color: #94a3b8;
+	white-space: nowrap;
+}
+
+.comment-body {
+	margin: 0;
+	font-size: 0.85rem;
+	line-height: 1.5;
+	color: #334155;
+	white-space: pre-wrap;
+	word-break: break-word;
+}

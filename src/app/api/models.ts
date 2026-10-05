@@ -4,3 +4,9 @@
 export type { ApicomplaintinsertRequest } from './models/apicomplaintinsert-request';
 export type { ApisuggestioninsertRequest } from './models/apisuggestioninsert-request';
 export type { ApicomplaintcommentinsertRequest } from './models/apicomplaintcommentinsert-request';
+export type { ApiuserloginRequest } from './models/apiuserlogin-request';
+export type { ApiuserregisterRequest } from './models/apiuserregister-request';
+export type { ApiadmincomplaintgetallRequest } from './models/apiadmincomplaintgetall-request';
+export type { ApiadminsuggestiongetallRequest } from './models/apiadminsuggestiongetall-request';
+export type { ApiadmincomplaintupdatestatusRequest } from './models/apiadmincomplaintupdatestatus-request';
+export type { ApiadminsuggestionupdatestatusRequest } from './models/apiadminsuggestionupdatestatus-request';

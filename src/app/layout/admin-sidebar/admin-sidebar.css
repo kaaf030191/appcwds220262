@@ -1,0 +1,182 @@
+:host {
+	display: block;
+	height: 100%;
+}
+
+.aside-inner {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background-color: #0f172a;
+	color: #e2e8f0;
+}
+
+/* ---------- Marca ---------- */
+.aside-brand {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	height: 64px;
+	padding: 0 1.25rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	flex-shrink: 0;
+}
+
+.brand-mark {
+	display: grid;
+	place-items: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 9px;
+	background-color: #ffffff;
+	color: #0f172a;
+	font-weight: 800;
+	font-size: 1.05rem;
+	flex-shrink: 0;
+}
+
+.brand-text {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.15;
+	min-width: 0;
+}
+
+.brand-name {
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	color: #ffffff;
+}
+
+.brand-sub {
+	font-size: 0.7rem;
+	color: #94a3b8;
+	white-space: nowrap;
+}
+
+/* ---------- Navegación ---------- */
+.aside-nav {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	padding: 1rem 0.75rem 1.5rem;
+}
+
+.nav-group + .nav-group {
+	margin-top: 1.25rem;
+}
+
+.nav-header {
+	display: block;
+	padding: 0 0.75rem 0.5rem;
+	font-size: 0.68rem;
+	font-weight: 600;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	color: #64748b;
+}
+
+/* Botón de cerrar: solo tiene sentido cuando el aside se despliega dentro del flujo. */
+.nav-close {
+	display: none;
+	margin-left: auto;
+	padding: 0.4rem 0.5rem;
+	border: none;
+	border-radius: 8px;
+	background-color: rgba(255, 255, 255, 0.06);
+	color: #cbd5e1;
+	cursor: pointer;
+	line-height: 1;
+}
+
+.nav-close:hover {
+	background-color: rgba(255, 255, 255, 0.12);
+	color: #ffffff;
+}
+
+.nav-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.6rem 0.75rem;
+	margin-bottom: 0.15rem;
+	border-radius: 8px;
+	color: #cbd5e1;
+	text-decoration: none;
+	font-size: 0.875rem;
+	font-weight: 500;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-item i {
+	font-size: 0.95rem;
+	color: #94a3b8;
+	transition: color 0.15s ease;
+}
+
+.nav-item:hover {
+	background-color: rgba(255, 255, 255, 0.07);
+	color: #ffffff;
+}
+
+.nav-item:hover i {
+	color: #ffffff;
+}
+
+.nav-item-active {
+	background-color: #ffffff;
+	color: #0f172a;
+	font-weight: 600;
+}
+
+.nav-item-active i {
+	color: #0f172a;
+}
+
+.nav-item-active:hover {
+	background-color: #ffffff;
+	color: #0f172a;
+}
+
+.nav-item-active:hover i {
+	color: #0f172a;
+}
+
+/* ---------- Usuario ---------- */
+.aside-user {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	padding: 0.9rem 1.25rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	flex-shrink: 0;
+}
+
+.user-meta {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.25;
+	min-width: 0;
+}
+
+.user-name {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: #ffffff;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.user-role {
+	font-size: 0.72rem;
+	color: #94a3b8;
+}
+
+@media (max-width: 991px) {
+	.nav-close {
+		display: inline-flex;
+	}
+}

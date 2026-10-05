@@ -1,0 +1,54 @@
+<div class="auth-shell">
+
+	<!-- ============ Panel de marca ============ -->
+	<aside class="auth-brand">
+		<div class="brand-top">
+			<span class="brand-mark">E</span>
+			<span class="brand-name">{{eyebrow()}}</span>
+		</div>
+
+		<div class="brand-copy">
+			<h2 class="brand-headline">Buzón de quejas y sugerencias</h2>
+			<p class="brand-text">
+				Registra, sigue y responde las quejas y sugerencias de la
+				comunidad universitaria en un solo lugar.
+			</p>
+
+			<ul class="brand-points">
+				<li>
+					<i class="pi pi-check"></i>
+					<span>Seguimiento por código y estado</span>
+				</li>
+				<li>
+					<i class="pi pi-check"></i>
+					<span>Comentarios anónimos en cada queja</span>
+				</li>
+				<li>
+					<i class="pi pi-check"></i>
+					<span>Panel de gestión para el encargado</span>
+				</li>
+			</ul>
+		</div>
+
+		<span class="brand-footer">Universidad Nacional de Ingeniería</span>
+	</aside>
+
+	<!-- ============ Panel del formulario ============ -->
+	<section class="auth-form">
+		<div class="auth-form-inner">
+			<div class="auth-mobile-brand">
+				<span class="brand-mark brand-mark-dark">E</span>
+				<span class="brand-name-dark">{{eyebrow()}}</span>
+			</div>
+
+			<header class="auth-header">
+				<h1 class="auth-title">{{title()}}</h1>
+				@if(subtitle()) {
+					<p class="auth-subtitle">{{subtitle()}}</p>
+				}
+			</header>
+
+			<ng-content />
+		</div>
+	</section>
+</div>

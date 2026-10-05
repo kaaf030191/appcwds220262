@@ -1,0 +1,51 @@
+<header class="admin-topbar">
+
+	<div class="topbar-left">
+		<p-button
+			icon="pi pi-bars"
+			severity="secondary"
+			[text]="true"
+			[outlined]="false"
+			class="nav-toggle"
+			ariaLabel="Abrir menú de navegación"
+			(onClick)="toggleNav.emit()" />
+
+		<nav class="breadcrumb" aria-label="Ruta de navegación">
+			@for(crumb of breadcrumb(); track $index) {
+				@if(crumb.url && $index < breadcrumb().length - 1) {
+					<a class="crumb crumb-link" [href]="crumb.url">{{crumb.label}}</a>
+				} @else {
+					<span class="crumb" [class.crumb-active]="$index === breadcrumb().length - 1">{{crumb.label}}</span>
+				}
+				@if($index < breadcrumb().length - 1) {
+					<i class="pi pi-angle-right crumb-sep"></i>
+				}
+			}
+		</nav>
+	</div>
+
+	<div class="topbar-right">
+		<p-button
+			icon="pi pi-bell"
+			severity="secondary"
+			[text]="true"
+			styleClass="topbar-icon"
+			ariaLabel="Notificaciones"
+			(onClick)="notify()" />
+
+		<div class="topbar-separator"></div>
+
+		<p-menu #menu [model]="profileItems" [popup]="true" />
+
+		<button type="button" class="user-trigger" (click)="menu.toggle($event)">
+			<p-avatar [label]="initials()" shape="circle" styleClass="trigger-avatar" />
+			<span class="trigger-meta">
+				<span class="trigger-name">{{user()?.firstName}} {{user()?.surName}}</span>
+				@if(isEncargado()) {
+					<span class="trigger-role">Encargado</span>
+				}
+			</span>
+			<i class="pi pi-angle-down trigger-caret"></i>
+		</button>
+	</div>
+</header>

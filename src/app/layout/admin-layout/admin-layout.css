@@ -1,0 +1,56 @@
+:host {
+	display: block;
+	height: 100vh;
+}
+
+.admin-shell {
+	display: flex;
+	height: 100%;
+	overflow: hidden;
+	background-color: #f1f5f9;
+	font-family: var(--p-font-family, sans-serif);
+}
+
+.admin-aside {
+	width: 260px;
+	flex-shrink: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+.admin-main-column {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+}
+
+.admin-content {
+	flex: 1;
+	overflow-y: auto;
+	padding: 1.5rem;
+}
+
+.admin-content-inner {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+@media (max-width: 991px) {
+	/* El aside colapsa a 0 de ancho en vez de flotar encima: la columna de
+	   contenido se desplaza y el menú se lee dentro de la página. */
+	.admin-aside {
+		width: 0;
+		transition: width 0.22s ease;
+	}
+
+	.admin-shell-nav-open .admin-aside {
+		width: 260px;
+		box-shadow: 2px 0 16px rgba(15, 23, 42, 0.18);
+	}
+
+	.admin-content {
+		padding: 1rem;
+	}
+}
